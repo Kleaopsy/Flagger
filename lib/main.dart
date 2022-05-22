@@ -13,25 +13,21 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   int _page = 0;
-
   String _pageTitle = 'Flagger';
   Widget _mainScreenWidged = const Games();
+
   void _changeMainScreen(int index) {
-    if (_page == index) {
-      initState();
+    _page = index;
+    if (_page == 0) {
+      setState(() {
+        _pageTitle = 'Flagger';
+        _mainScreenWidged = const Games();
+      });
     } else {
-      _page = index;
-      if (_page == 0) {
-        setState(() {
-          _pageTitle = 'Flagger';
-          _mainScreenWidged = const Games();
-        });
-      } else {
-        setState(() {
-          _pageTitle = 'Profile';
-          _mainScreenWidged = const Profile();
-        });
-      }
+      setState(() {
+        _pageTitle = 'Profile';
+        _mainScreenWidged = const Profile();
+      });
     }
   }
 

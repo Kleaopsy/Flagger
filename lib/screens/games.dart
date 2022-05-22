@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
+import 'package:flagger/screens/games/flags.dart';
 
 void main() => runApp(const Games());
 
@@ -14,16 +15,12 @@ class _GamesState extends State<Games> {
   List<Color> colorPalatte = getDarkColorPalatte();
   int _games = 0;
 
-  _intoTheGames(int index) {
-    setState(() => _games = index);
-  }
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
 
     if (_games == 1) {
-      return const Text('Flags');
+      return const Flags();
     } else {
       return SingleChildScrollView(
         child: Padding(
@@ -33,7 +30,7 @@ class _GamesState extends State<Games> {
               Row(
                 children: [
                   InkWell(
-                    onTap: _intoTheGames(1),
+                    onTap: () => setState(() => _games = 1),
                     child: Container(
                       width: (screenWidth - 20) / 2 - 2,
                       height: (screenWidth - 20) / 2 - 2,
