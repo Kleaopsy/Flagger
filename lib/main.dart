@@ -1,10 +1,12 @@
+import 'package:flagger/screens/profile.dart';
 import 'package:flutter/material.dart';
+import 'settings.dart';
 import 'screens/games.dart';
-import 'screens/profile.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
   @override
   State<MyApp> createState() => _MyAppState();
 }
@@ -12,33 +14,52 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   int _page = 0;
 
+  String _pageTitle = 'Flagger';
+  Widget _mainScreenWidged = const Games();
+  void _changeMainScreen(int index) {
+    if (_page == index) {
+      initState();
+    } else {
+      _page = index;
+      if (_page == 0) {
+        setState(() {
+          _pageTitle = 'Flagger';
+          _mainScreenWidged = const Games();
+        });
+      } else {
+        setState(() {
+          _pageTitle = 'Profile';
+          _mainScreenWidged = const Profile();
+        });
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    Widget mainScreen = _page == 0 ? Games() : Profile();
     return MaterialApp(
-      title: 'Flagger',
       debugShowCheckedModeBanner: false,
+      theme: ThemeClass.lightTheme,
+      darkTheme: ThemeClass.darkTheme,
+      themeMode: ThemeMode.dark,
       home: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          title: Text('Flagger'),
-          actions: [
-            InkWell(
-              onTap: () {},
-              child: Icon(Icons.settings),
-            ),
-            SizedBox(width: 30)
-          ],
+          centerTitle: false,
+          title: Text(_pageTitle),
         ),
-        body: SafeArea(child: mainScreen),
+        body: SafeArea(child: _mainScreenWidged),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: _page,
-          onTap: (value) {
-            setState(() => _page = value);
-          },
-          items: [
-            BottomNavigationBarItem(icon: Icon(Icons.gamepad), label: 'Play'),
-            BottomNavigationBarItem(icon: Icon(Icons.people), label: 'Profile'),
+          onTap: _changeMainScreen,
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.gamepad),
+              label: 'Games',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.people),
+              label: 'Profile',
+            ),
           ],
         ),
       ),
