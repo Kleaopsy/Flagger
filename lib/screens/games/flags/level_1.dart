@@ -20,6 +20,7 @@ List<Question> questions = [
   Question(const AssetImage('assets/images/flags/ua.png'), 'Ukraine'),
   Question(const AssetImage('assets/images/flags/de.png'), 'Germany'),
   Question(const AssetImage('assets/images/flags/nl.png'), 'Netherlands'),
+  Question(const AssetImage('assets/images/flags/fr.png'), 'France'),
 ];
 
 List<Color> colorPalette = getDarkColorPalatte();
@@ -33,7 +34,7 @@ class Level1 extends StatefulWidget {
 
 class _Level1State extends State<Level1> {
   Random rndNum = Random();
-  int trueAnswer = 0, wrongAnswers = 0, buttonNum = 0;
+  int trueAnswer = 0, wrongAnswers = 0, buttonNum = 0, buttonCount = 4;
   List<String> answers = [];
   late AssetImage flag;
   void theGame() {}
@@ -42,8 +43,8 @@ class _Level1State extends State<Level1> {
   Widget build(BuildContext context) {
     trueAnswer = rndNum.nextInt(questions.length);
     flag = questions[trueAnswer].questionImage;
-    buttonNum = rndNum.nextInt(6);
-    for (int i = 0; i <= 5; i++) {
+    buttonNum = rndNum.nextInt(buttonCount);
+    for (int i = 0; i < buttonCount; i++) {
       if (i == buttonNum) {
         answers.add(questions[trueAnswer].answer);
       } else {
@@ -51,9 +52,13 @@ class _Level1State extends State<Level1> {
         do {
           unique = true;
           wrongAnswers = rndNum.nextInt(questions.length);
-          for (int j = 0; j < answers.length; j++) {
-            if (answers[j] == questions[wrongAnswers].answer) {
-              unique = false;
+          if (questions[wrongAnswers].answer == questions[trueAnswer].answer) {
+            unique = false;
+          } else {
+            for (int j = 0; j < answers.length; j++) {
+              if (answers[j] == questions[wrongAnswers].answer) {
+                unique = false;
+              }
             }
           }
         } while (!unique);
@@ -79,7 +84,7 @@ class _Level1State extends State<Level1> {
           child: Center(
             child: Container(
               width: MediaQuery.of(context).size.width - 60,
-              height: 600,
+              height: 520,
               decoration: BoxDecoration(
                 color: colorPalette[0],
                 borderRadius: BorderRadius.circular(20),
@@ -178,56 +183,6 @@ class _Level1State extends State<Level1> {
                             child: Center(
                               child: Text(
                                 answers[3],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: colorPalette[1],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: theGame,
-                          child: Container(
-                            width:
-                                (MediaQuery.of(context).size.width - 60) / 2 -
-                                    50,
-                            height: 80,
-                            child: Center(
-                              child: Text(
-                                answers[4],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: colorPalette[1],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 25),
-                        TextButton(
-                          onPressed: theGame,
-                          child: Container(
-                            width:
-                                (MediaQuery.of(context).size.width - 60) / 2 -
-                                    50,
-                            height: 80,
-                            child: Center(
-                              child: Text(
-                                answers[5],
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,

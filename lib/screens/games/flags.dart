@@ -68,7 +68,7 @@ class Flags extends StatelessWidget {
             child: Row(
               children: [
                 const SizedBox(width: 50),
-                const Image(image: AssetImage('assets/images/flags/prc.png')),
+                const Image(image: AssetImage('assets/images/flags/cn.png')),
                 const SizedBox(width: 20),
                 Column(
                   children: const [
