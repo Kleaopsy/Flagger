@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
+import 'flags/level_1.dart';
 
 void main() => runApp(const Flags());
 
@@ -14,25 +15,29 @@ class Flags extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            width: screenWidth,
-            height: 100,
-            decoration: BoxDecoration(color: colorPalatte[1]),
-            child: Row(
-              children: [
-                const SizedBox(width: 50),
-                const Image(image: AssetImage('assets/images/flags/fr.png')),
-                const SizedBox(width: 20),
-                Column(
-                  children: const [
-                    SizedBox(height: 25),
-                    Text(
-                      'Level - 1',
-                      style: TextStyle(fontSize: 24),
-                    ),
-                  ],
-                ),
-              ],
+          InkWell(
+            onTap: () => Navigator.push(context,
+                MaterialPageRoute(builder: ((context) => const Level1()))),
+            child: Container(
+              width: screenWidth,
+              height: 100,
+              decoration: BoxDecoration(color: colorPalatte[1]),
+              child: Row(
+                children: [
+                  const SizedBox(width: 50),
+                  const Image(image: AssetImage('assets/images/flags/fr.png')),
+                  const SizedBox(width: 20),
+                  Column(
+                    children: const [
+                      SizedBox(height: 25),
+                      Text(
+                        'Level - 1',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
           Container(

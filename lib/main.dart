@@ -40,7 +40,7 @@ class _MyAppState extends State<MyApp> {
       themeMode: ThemeMode.dark,
       home: Scaffold(
         appBar: AppBar(
-          centerTitle: false,
+          centerTitle: true,
           title: Text(_pageTitle),
         ),
         body: SafeArea(child: _mainScreenWidged),
