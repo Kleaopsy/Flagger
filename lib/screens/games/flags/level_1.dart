@@ -37,173 +37,269 @@ class _Level1State extends State<Level1> {
   int trueAnswer = 0, wrongAnswers = 0, buttonNum = 0, buttonCount = 4;
   List<String> answers = [];
   late AssetImage flag;
-  void theGame() {}
+
+  int questionCap = 10, userAt = 1;
+  List<bool> userAnswers = [];
+
+  void button1() => setState(() {
+        if (buttonNum == 0) {
+          userAnswers.add(true);
+        } else {
+          userAnswers.add(false);
+        }
+        userAt++;
+        answers.clear();
+      });
+  void button2() => setState(() {
+        if (buttonNum == 1) {
+          userAnswers.add(true);
+        } else {
+          userAnswers.add(false);
+        }
+        userAt++;
+        answers.clear();
+      });
+  void button3() => setState(() {
+        if (buttonNum == 2) {
+          userAnswers.add(true);
+        } else {
+          userAnswers.add(false);
+        }
+        userAt++;
+        answers.clear();
+      });
+  void button4() => setState(() {
+        if (buttonNum == 3) {
+          userAnswers.add(true);
+        } else {
+          userAnswers.add(false);
+        }
+        userAt++;
+        answers.clear();
+      });
 
   @override
   Widget build(BuildContext context) {
-    trueAnswer = rndNum.nextInt(questions.length);
-    flag = questions[trueAnswer].questionImage;
-    buttonNum = rndNum.nextInt(buttonCount);
-    for (int i = 0; i < buttonCount; i++) {
-      if (i == buttonNum) {
-        answers.add(questions[trueAnswer].answer);
-      } else {
-        bool unique = true;
-        do {
-          unique = true;
-          wrongAnswers = rndNum.nextInt(questions.length);
-          if (questions[wrongAnswers].answer == questions[trueAnswer].answer) {
-            unique = false;
-          } else {
-            for (int j = 0; j < answers.length; j++) {
-              if (answers[j] == questions[wrongAnswers].answer) {
-                unique = false;
-              }
-            }
-          }
-        } while (!unique);
-        answers.add(questions[wrongAnswers].answer);
+    if (userAt > questionCap) {
+      int trueCount = 0, falseCount = 0;
+      for (int i = 0; i < userAnswers.length; i++) {
+        if (userAnswers[i] == true) {
+          trueCount++;
+        } else {
+          falseCount++;
+        }
       }
-    }
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeClass.lightTheme,
-      darkTheme: ThemeClass.darkTheme,
-      themeMode: ThemeMode.dark,
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text('Level - 1'),
-          leading: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: const Icon(Icons.arrow_back_ios),
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeClass.lightTheme,
+        darkTheme: ThemeClass.darkTheme,
+        themeMode: ThemeMode.dark,
+        home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text('Level - 1'),
+            leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.arrow_back_ios),
+            ),
+          ),
+          body: SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const Text('True: '),
+                      Text(trueCount.toString()),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      const Text('False: '),
+                      Text(falseCount.toString()),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-        body: SafeArea(
-          child: Center(
-            child: Container(
-              width: MediaQuery.of(context).size.width - 60,
-              height: 520,
-              decoration: BoxDecoration(
-                color: colorPalette[0],
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
-                child: Column(
-                  children: [
-                    Image(
-                      width: MediaQuery.of(context).size.width - 100,
-                      image: flag,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: theGame,
-                          child: Container(
-                            width:
-                                (MediaQuery.of(context).size.width - 60) / 2 -
-                                    50,
-                            height: 80,
-                            child: Center(
-                              child: Text(
-                                answers[0],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
+      );
+    } else {
+      trueAnswer = rndNum.nextInt(questions.length);
+      flag = questions[trueAnswer].questionImage;
+      buttonNum = rndNum.nextInt(buttonCount);
+      for (int i = 0; i < buttonCount; i++) {
+        if (i == buttonNum) {
+          answers.add(questions[trueAnswer].answer);
+        } else {
+          bool unique = true;
+          do {
+            unique = true;
+            wrongAnswers = rndNum.nextInt(questions.length);
+            if (questions[wrongAnswers].answer ==
+                questions[trueAnswer].answer) {
+              unique = false;
+            } else {
+              for (int j = 0; j < answers.length; j++) {
+                if (answers[j] == questions[wrongAnswers].answer) {
+                  unique = false;
+                }
+              }
+            }
+          } while (!unique);
+          answers.add(questions[wrongAnswers].answer);
+        }
+      }
+
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        theme: ThemeClass.lightTheme,
+        darkTheme: ThemeClass.darkTheme,
+        themeMode: ThemeMode.dark,
+        home: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: const Text('Level - 1'),
+            leading: IconButton(
+              onPressed: () => Navigator.pop(context),
+              icon: const Icon(Icons.arrow_back_ios),
+            ),
+          ),
+          body: SafeArea(
+            child: Center(
+              child: Container(
+                width: MediaQuery.of(context).size.width - 60,
+                height: 520,
+                decoration: BoxDecoration(
+                  color: colorPalette[0],
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(userAt.toString()),
+                          const Text('/'),
+                          Text(questionCap.toString()),
+                        ],
+                      ),
+                      Image(
+                        width: MediaQuery.of(context).size.width - 100,
+                        image: flag,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: button1,
+                            child: Container(
+                              width:
+                                  (MediaQuery.of(context).size.width - 60) / 2 -
+                                      50,
+                              height: 80,
+                              child: Center(
+                                child: Text(
+                                  answers[0],
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: colorPalette[1],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 25),
-                        TextButton(
-                          onPressed: theGame,
-                          child: Container(
-                            width:
-                                (MediaQuery.of(context).size.width - 60) / 2 -
-                                    50,
-                            height: 80,
-                            child: Center(
-                              child: Text(
-                                answers[1],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: colorPalette[1],
                               ),
                             ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: colorPalette[1],
-                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        TextButton(
-                          onPressed: theGame,
-                          child: Container(
-                            width:
-                                (MediaQuery.of(context).size.width - 60) / 2 -
-                                    50,
-                            height: 80,
-                            child: Center(
-                              child: Text(
-                                answers[2],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
+                          const SizedBox(width: 25),
+                          TextButton(
+                            onPressed: button2,
+                            child: Container(
+                              width:
+                                  (MediaQuery.of(context).size.width - 60) / 2 -
+                                      50,
+                              height: 80,
+                              child: Center(
+                                child: Text(
+                                  answers[1],
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
                                 ),
                               ),
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: colorPalette[1],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 25),
-                        TextButton(
-                          onPressed: theGame,
-                          child: Container(
-                            width:
-                                (MediaQuery.of(context).size.width - 60) / 2 -
-                                    50,
-                            height: 80,
-                            child: Center(
-                              child: Text(
-                                answers[3],
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: colorPalette[1],
                               ),
                             ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: colorPalette[1],
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          TextButton(
+                            onPressed: button3,
+                            child: Container(
+                              width:
+                                  (MediaQuery.of(context).size.width - 60) / 2 -
+                                      50,
+                              height: 80,
+                              child: Center(
+                                child: Text(
+                                  answers[2],
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: colorPalette[1],
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          const SizedBox(width: 25),
+                          TextButton(
+                            onPressed: button4,
+                            child: Container(
+                              width:
+                                  (MediaQuery.of(context).size.width - 60) / 2 -
+                                      50,
+                              height: 80,
+                              child: Center(
+                                child: Text(
+                                  answers[3],
+                                  style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: colorPalette[1],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 }
