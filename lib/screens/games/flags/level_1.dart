@@ -82,7 +82,7 @@ class _Level1State extends State<Level1> {
               height: 600,
               decoration: BoxDecoration(
                 color: colorPalette[0],
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(20),
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
