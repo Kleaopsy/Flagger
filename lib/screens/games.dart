@@ -51,9 +51,8 @@ class _GamesState extends State<Games> {
                       ),
                     ),
                   ),
-                  /*const SizedBox(width: 4),
+                  const SizedBox(width: 4),
                   InkWell(
-                    onTap: _intoTheGames(1),
                     child: Container(
                       width: (screenWidth - 20) / 2 - 2,
                       height: (screenWidth - 20) / 2 - 2,
@@ -66,14 +65,14 @@ class _GamesState extends State<Games> {
                         child: Column(
                           children: const [
                             Image(
-                              image: AssetImage('assets/images/flags_icon.png'),
+                              image: AssetImage('assets/images/flags/jp.png'),
                             ),
-                            Text('Flags'),
+                            Text('Japan'),
                           ],
                         ),
                       ),
                     ),
-                  ),*/
+                  ),
                 ],
               ),
             ],

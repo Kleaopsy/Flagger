@@ -26,7 +26,7 @@ class Flags extends StatelessWidget {
                 children: [
                   const SizedBox(width: 50),
                   const Image(image: AssetImage('assets/images/flags/fr.png')),
-                  const SizedBox(width: 20),
+                  const SizedBox(width: 50),
                   Column(
                     children: const [
                       SizedBox(height: 25),
@@ -48,7 +48,7 @@ class Flags extends StatelessWidget {
               children: [
                 const SizedBox(width: 50),
                 const Image(image: AssetImage('assets/images/flags/jp.png')),
-                const SizedBox(width: 20),
+                const SizedBox(width: 50),
                 Column(
                   children: const [
                     SizedBox(height: 25),
@@ -69,7 +69,7 @@ class Flags extends StatelessWidget {
               children: [
                 const SizedBox(width: 50),
                 const Image(image: AssetImage('assets/images/flags/cn.png')),
-                const SizedBox(width: 20),
+                const SizedBox(width: 50),
                 Column(
                   children: const [
                     SizedBox(height: 25),
@@ -90,7 +90,7 @@ class Flags extends StatelessWidget {
               children: [
                 const SizedBox(width: 50),
                 const Image(image: AssetImage('assets/images/flags/tr.png')),
-                const SizedBox(width: 20),
+                const SizedBox(width: 50),
                 Column(
                   children: const [
                     SizedBox(height: 25),
