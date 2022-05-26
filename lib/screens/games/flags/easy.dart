@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
 
-void main() => runApp(const Level1());
+void main() => runApp(const Easy());
 
 class Question {
   AssetImage questionImage;
@@ -25,14 +25,14 @@ List<Question> questions = [
 
 List<Color> colorPalette = getLightColorPalatte();
 
-class Level1 extends StatefulWidget {
-  const Level1({Key? key}) : super(key: key);
+class Easy extends StatefulWidget {
+  const Easy({Key? key}) : super(key: key);
 
   @override
-  State<Level1> createState() => _Level1State();
+  State<Easy> createState() => _EasyState();
 }
 
-class _Level1State extends State<Level1> {
+class _EasyState extends State<Easy> {
   Random rndNum = Random();
   int trueAnswer = 0, wrongAnswers = 0, buttonNum = 0, buttonCount = 4;
   List<String> answers = [];
@@ -97,7 +97,7 @@ class _Level1State extends State<Level1> {
         home: Scaffold(
           appBar: AppBar(
             centerTitle: true,
-            title: const Text('Level - 1'),
+            title: const Text('Easy'),
             leading: IconButton(
               onPressed: () => Navigator.pop(context),
               icon: const Icon(Icons.arrow_back_ios),

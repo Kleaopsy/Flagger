@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
-import 'flags/level_1.dart';
+import 'flags/Easy.dart';
 
 void main() => runApp(const Flags());
 
@@ -27,7 +27,7 @@ class Flags extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              const SizedBox(height: 15),
+              const SizedBox(height: 25),
               const Text(
                 'Difficulty: ',
                 style: TextStyle(
@@ -38,12 +38,12 @@ class Flags extends StatelessWidget {
               const SizedBox(height: 40),
               TextButton(
                 onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Level1()))),
+                    MaterialPageRoute(builder: ((context) => const Easy()))),
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: lightColorPalatte[1],
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
@@ -63,12 +63,12 @@ class Flags extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Level1()))),
+                    MaterialPageRoute(builder: ((context) => const Easy()))),
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.yellow[500],
+                    color: Colors.yellow[200],
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
@@ -88,12 +88,12 @@ class Flags extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Level1()))),
+                    MaterialPageRoute(builder: ((context) => const Easy()))),
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
                   decoration: BoxDecoration(
-                    color: Colors.yellow[800],
+                    color: Colors.yellow[500],
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Row(
@@ -113,7 +113,32 @@ class Flags extends StatelessWidget {
               ),
               TextButton(
                 onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Level1()))),
+                    MaterialPageRoute(builder: ((context) => const Easy()))),
+                child: Container(
+                  width: screenWidth * 3 / 4,
+                  height: 100,
+                  decoration: BoxDecoration(
+                    color: Colors.yellow[800],
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
+                        'Moderate',
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 30,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.push(context,
+                    MaterialPageRoute(builder: ((context) => const Easy()))),
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
@@ -125,7 +150,7 @@ class Flags extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Extreme',
+                        'Insane',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 30,
