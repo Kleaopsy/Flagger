@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
 
-const List<Color> darkColorPalatte = [
-  Color.fromARGB(255, 23, 23, 23),
-  Color.fromARGB(255, 68, 68, 68),
+const List<Color> lightColorPalatte = [
+  Color.fromARGB(255, 236, 228, 179),
+  Color.fromARGB(255, 62, 187, 75),
+  Color.fromRGBO(237, 237, 237, 1),
   Color.fromARGB(255, 218, 0, 55),
-  Color.fromARGB(255, 237, 237, 237)
 ];
 
-List<Color> getDarkColorPalatte() => darkColorPalatte;
+List<Color> getLightColorPalatte() => lightColorPalatte;
 
 class ThemeClass {
   static ThemeData lightTheme = ThemeData(
-      scaffoldBackgroundColor: Colors.white,
-      colorScheme: const ColorScheme.light(),
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.blue,
-      ));
-
-  static ThemeData darkTheme = ThemeData(
-    scaffoldBackgroundColor: darkColorPalatte[1],
-    colorScheme: const ColorScheme.dark(),
+    scaffoldBackgroundColor: lightColorPalatte[0],
+    colorScheme: const ColorScheme.light(),
+    fontFamily: 'Verdana',
     appBarTheme: AppBarTheme(
-      backgroundColor: darkColorPalatte[0],
+      backgroundColor: lightColorPalatte[1],
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: darkColorPalatte[0],
-      unselectedItemColor: darkColorPalatte[3],
-      selectedItemColor: darkColorPalatte[2],
+      backgroundColor: lightColorPalatte[1],
+      unselectedItemColor: lightColorPalatte[2],
+      selectedItemColor: lightColorPalatte[3],
     ),
   );
 }

@@ -23,7 +23,7 @@ List<Question> questions = [
   Question(const AssetImage('assets/images/flags/fr.png'), 'France'),
 ];
 
-List<Color> colorPalette = getDarkColorPalatte();
+List<Color> colorPalette = getLightColorPalatte();
 
 class Level1 extends StatefulWidget {
   const Level1({Key? key}) : super(key: key);
@@ -93,8 +93,7 @@ class _Level1State extends State<Level1> {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeClass.lightTheme,
-        darkTheme: ThemeClass.darkTheme,
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.light,
         home: Scaffold(
           appBar: AppBar(
             centerTitle: true,
@@ -156,7 +155,6 @@ class _Level1State extends State<Level1> {
       return MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeClass.lightTheme,
-        darkTheme: ThemeClass.darkTheme,
         themeMode: ThemeMode.dark,
         home: Scaffold(
           appBar: AppBar(

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
 
-void main() => runApp(const Profile());
+void main() => runApp(const Settings());
 
-class Profile extends StatelessWidget {
-  const Profile({Key? key}) : super(key: key);
+class Settings extends StatelessWidget {
+  const Settings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class Profile extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Profile'),
+          title: const Text('Settings'),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(
@@ -24,7 +24,7 @@ class Profile extends StatelessWidget {
           ),
         ),
         body: const SafeArea(
-          child: Text('Profile'),
+          child: Text('Settings'),
         ),
       ),
     );

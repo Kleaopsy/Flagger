@@ -12,17 +12,23 @@ class Games extends StatefulWidget {
 }
 
 class _GamesState extends State<Games> {
-  List<Color> colorPalatte = getDarkColorPalatte();
-  int _games = 0;
+  List<Color> colorPalatte = getLightColorPalatte();
 
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
-
-    if (_games == 1) {
-      return const Flags();
-    } else {
-      return SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text('Games'),
+        leading: IconButton(
+          onPressed: () => Navigator.pop(context),
+          icon: const Icon(
+            Icons.arrow_back_ios_new,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 10),
           child: Column(
@@ -30,12 +36,17 @@ class _GamesState extends State<Games> {
               Row(
                 children: [
                   InkWell(
-                    onTap: () => setState(() => _games = 1),
+                    onTap: () => setState(
+                      () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: ((context) => const Flags()))),
+                    ),
                     child: Container(
                       width: (screenWidth - 20) / 2 - 2,
                       height: (screenWidth - 20) / 2 - 2,
                       decoration: BoxDecoration(
-                        color: colorPalatte[0],
+                        color: colorPalatte[1],
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
@@ -45,40 +56,25 @@ class _GamesState extends State<Games> {
                             Image(
                               image: AssetImage('assets/images/flags_icon.png'),
                             ),
-                            Text('Flags'),
+                            Text(
+                              'Flags',
+                              style: TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
                           ],
                         ),
                       ),
                     ),
                   ),
                   const SizedBox(width: 4),
-                  InkWell(
-                    child: Container(
-                      width: (screenWidth - 20) / 2 - 2,
-                      height: (screenWidth - 20) / 2 - 2,
-                      decoration: BoxDecoration(
-                        color: colorPalatte[0],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20),
-                        child: Column(
-                          children: const [
-                            Image(
-                              image: AssetImage('assets/images/flags/jp.png'),
-                            ),
-                            Text('Japan'),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
                 ],
               ),
             ],
           ),
         ),
-      );
-    }
+      ),
+    );
   }
 }
