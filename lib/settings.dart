@@ -8,6 +8,8 @@ const List<Color> lightColorPalatte = [
 ];
 
 List<Color> getLightColorPalatte() => lightColorPalatte;
+AssetImage getBackgroundImage() =>
+    const AssetImage('assets/images/wallpaper.png');
 
 class ThemeClass {
   static ThemeData lightTheme = ThemeData(
@@ -16,11 +18,6 @@ class ThemeClass {
     fontFamily: 'Verdana',
     appBarTheme: AppBarTheme(
       backgroundColor: lightColorPalatte[1],
-    ),
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: lightColorPalatte[1],
-      unselectedItemColor: lightColorPalatte[2],
-      selectedItemColor: lightColorPalatte[3],
     ),
   );
 }

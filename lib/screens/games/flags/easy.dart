@@ -11,16 +11,50 @@ class Question {
 }
 
 List<Question> questions = [
-  Question(const AssetImage('assets/images/flags/hu.png'), 'Hungary'),
-  Question(const AssetImage('assets/images/flags/jp.png'), 'Japan'),
-  Question(const AssetImage('assets/images/flags/pl.png'), 'Poland'),
-  Question(const AssetImage('assets/images/flags/cn.png'), 'China'),
-  Question(const AssetImage('assets/images/flags/ru.png'), 'Russia'),
-  Question(const AssetImage('assets/images/flags/tr.png'), 'Turkey'),
-  Question(const AssetImage('assets/images/flags/ua.png'), 'Ukraine'),
-  Question(const AssetImage('assets/images/flags/de.png'), 'Germany'),
-  Question(const AssetImage('assets/images/flags/nl.png'), 'Netherlands'),
-  Question(const AssetImage('assets/images/flags/fr.png'), 'France'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Argentina.png'),
+      'Argentina'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Australia.png'),
+      'Australia'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Austria.png'),
+      'Austria'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Belgium.png'),
+      'Belgium'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Brazil.png'),
+      'Brazil'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Canada.png'),
+      'Canada'),
+  Question(
+      const AssetImage('assets/images/flags/easy/Flag_of_China.png'), 'China'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_France.png'),
+      'France'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Germany.png'),
+      'Germany'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Greece.png'),
+      'Greece'),
+  Question(
+      const AssetImage('assets/images/flags/easy/Flag_of_India.png'), 'India'),
+  Question(
+      const AssetImage('assets/images/flags/easy/Flag_of_Italy.png'), 'Italy'),
+  Question(
+      const AssetImage('assets/images/flags/easy/Flag_of_Japan.png'), 'Japan'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Netherlands.png'),
+      'Netherlands'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Russia.png'),
+      'Russia'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_South_Korea.png'),
+      'South Korea'),
+  Question(
+      const AssetImage('assets/images/flags/easy/Flag_of_Spain.png'), 'Spain'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Switzerland.png'),
+      'Switzerland'),
+  Question(const AssetImage('assets/images/flags/easy/Flag_of_Turkey.png'),
+      'Turkey'),
+  Question(
+      const AssetImage('assets/images/flags/easy/Flag_of_United_Kingdom.png'),
+      'UK'),
+  Question(
+      const AssetImage('assets/images/flags/easy/Flag_of_United_States.png'),
+      'USA'),
 ];
 
 List<Color> colorPalette = getLightColorPalatte();

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flagger/screens/games.dart';
 import 'package:flagger/screens/profile.dart';
@@ -17,10 +16,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeClass.lightTheme,
       themeMode: ThemeMode.light,
-      home: const Scaffold(
+      home: Scaffold(
         body: SafeArea(
-          child: SingleChildScrollView(
-            child: MainScreen(),
+          child: Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: getBackgroundImage(), fit: BoxFit.cover)),
+            child: const SingleChildScrollView(
+              child: MainScreen(),
+            ),
           ),
         ),
       ),
@@ -41,12 +45,13 @@ class _MainScreenState extends State<MainScreen> {
     double screenWidth = MediaQuery.of(context).size.width;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 40),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Image(
             image: const AssetImage('assets/images/Logo.png'),
-            width: screenWidth * 3 / 4,
+            width: screenWidth * 3 / 6,
           ),
           TextButton(
             onPressed: () => setState(
