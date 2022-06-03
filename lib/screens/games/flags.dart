@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
-import 'flags/Easy.dart';
+import 'flags/easy.dart';
 
 void main() => runApp(const Flags());
 
