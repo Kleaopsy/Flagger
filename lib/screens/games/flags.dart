@@ -37,8 +37,8 @@ class Flags extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               TextButton(
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Easy()))),
+                onPressed: () => Navigator.push(
+                    context, CustomPageRoute(child: const Easy())),
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
@@ -62,8 +62,7 @@ class Flags extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Easy()))),
+                onPressed: () {},
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
@@ -87,8 +86,7 @@ class Flags extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Easy()))),
+                onPressed: () {},
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
@@ -112,8 +110,7 @@ class Flags extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Easy()))),
+                onPressed: () {},
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
@@ -137,8 +134,7 @@ class Flags extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () => Navigator.push(context,
-                    MaterialPageRoute(builder: ((context) => const Easy()))),
+                onPressed: () {},
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,

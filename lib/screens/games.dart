@@ -36,11 +36,9 @@ class _GamesState extends State<Games> {
               Row(
                 children: [
                   InkWell(
-                    onTap: () => setState(
-                      () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: ((context) => const Flags()))),
+                    onTap: () => Navigator.push(
+                      context,
+                      CustomPageRoute(child: const Flags()),
                     ),
                     child: Container(
                       width: (screenWidth - 20) / 2 - 2,

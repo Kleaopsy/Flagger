@@ -54,10 +54,8 @@ class _MainScreenState extends State<MainScreen> {
             width: screenWidth * 3 / 6,
           ),
           TextButton(
-            onPressed: () => setState(
-              () => Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => const Games()))),
-            ),
+            onPressed: () =>
+                Navigator.push(context, CustomPageRoute(child: const Games())),
             child: Container(
               width: screenWidth - 30,
               height: 100,
@@ -77,10 +75,8 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           TextButton(
-            onPressed: () => setState(
-              () => Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => const Profile()))),
-            ),
+            onPressed: () => Navigator.push(
+                context, CustomPageRoute(child: const Profile())),
             child: Container(
               width: screenWidth - 30,
               height: 100,
@@ -100,10 +96,8 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           TextButton(
-            onPressed: () => setState(
-              () => Navigator.push(context,
-                  MaterialPageRoute(builder: ((context) => const Settings()))),
-            ),
+            onPressed: () => Navigator.push(
+                context, CustomPageRoute(child: const Settings())),
             child: Container(
               width: screenWidth - 30,
               height: 100,

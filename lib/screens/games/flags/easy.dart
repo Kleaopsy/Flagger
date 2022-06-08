@@ -72,7 +72,7 @@ class _EasyState extends State<Easy> {
   List<String> answers = [];
   late AssetImage flag;
 
-  int questionCap = 10, userAt = 1;
+  int questionCap = 15, userAt = 1;
   List<bool> userAnswers = [];
 
   void button1() => setState(() {
