@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "776155926373",
+    "firebase_url": "https://flagger-3ec66-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "flagger-3ec66",
+    "storage_bucket": "flagger-3ec66.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:776155926373:android:7cd1516ac76d8d1aee5b8c",
+        "android_client_info": {
+          "package_name": "com.Kleaopsy.flagger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "776155926373-fk6l2m1eg2fbjat8sok3e3he7hfue18e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApXf6IL9cpkIGY4rWqMnv9CHzqmpXVSMA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "776155926373-fk6l2m1eg2fbjat8sok3e3he7hfue18e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
