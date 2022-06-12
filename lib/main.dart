@@ -61,8 +61,7 @@ class _MainScreenState extends State<MainScreen> {
             width: screenWidth * 3 / 6,
           ),
           TextButton(
-            onPressed: () =>
-                Navigator.push(context, CustomPageRoute(child: const Games())),
+            onPressed: () => Navigator.push(context, CustomPageRoute(child: const Games())),
             child: Container(
               width: screenWidth - 30,
               height: 100,
@@ -73,18 +72,14 @@ class _MainScreenState extends State<MainScreen> {
               child: const Center(
                 child: Text(
                   'Play',
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
             ),
           ),
           const SignIn(),
           TextButton(
-            onPressed: () => Navigator.push(
-                context, CustomPageRoute(child: const Settings())),
+            onPressed: () => Navigator.push(context, CustomPageRoute(child: const Settings())),
             child: Container(
               width: screenWidth - 30,
               height: 100,
@@ -95,10 +90,7 @@ class _MainScreenState extends State<MainScreen> {
               child: const Center(
                 child: Text(
                   'Settings',
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
             ),
@@ -115,10 +107,7 @@ class _MainScreenState extends State<MainScreen> {
               child: const Center(
                 child: Text(
                   'Exit',
-                  style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                  style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ),
             ),
@@ -145,8 +134,7 @@ class _SignInState extends State<SignIn> {
     if (notSigned) {
       return TextButton(
         onPressed: () {
-          final provider =
-              Provider.of<GoogleSignInProvider>(context, listen: false);
+          final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
           setState(() => notSigned = provider.googleLogin() as bool);
         },
         child: Container(
@@ -164,10 +152,7 @@ class _SignInState extends State<SignIn> {
                 SizedBox(width: 10),
                 Text(
                   'Sing Up with Google',
-                  style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                 ),
               ],
             ),
@@ -176,8 +161,7 @@ class _SignInState extends State<SignIn> {
       );
     } else {
       return TextButton(
-        onPressed: () =>
-            Navigator.push(context, CustomPageRoute(child: const Profile())),
+        onPressed: () => Navigator.push(context, CustomPageRoute(child: const Profile())),
         child: Container(
           width: screenWidth - 30,
           height: 100,
@@ -188,10 +172,7 @@ class _SignInState extends State<SignIn> {
           child: const Center(
             child: Text(
               'Profile',
-              style: TextStyle(
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white),
+              style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.white),
             ),
           ),
         ),

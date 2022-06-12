@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
 import 'flags/easy.dart';
+import 'flags/moderate.dart';
 
 void main() => runApp(const Flags());
 
@@ -37,8 +38,7 @@ class Flags extends StatelessWidget {
               ),
               const SizedBox(height: 40),
               TextButton(
-                onPressed: () => Navigator.push(
-                    context, CustomPageRoute(child: const Easy())),
+                onPressed: () => Navigator.push(context, CustomPageRoute(child: Easy())),
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
@@ -62,7 +62,7 @@ class Flags extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => Navigator.push(context, CustomPageRoute(child: Moderate())),
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,
@@ -74,7 +74,7 @@ class Flags extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Modarete',
+                        'Moderate',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 30,
@@ -122,7 +122,7 @@ class Flags extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Moderate',
+                        'Extreme',
                         style: TextStyle(
                           color: Colors.black54,
                           fontSize: 30,

@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
-void main() => runApp(Easy());
+void main() => runApp(Moderate());
 
 class Question {
   ImageProvider questionImage;
@@ -17,11 +17,11 @@ class Question {
 List<Question> questions = [];
 List<Color> colorPalette = getLightColorPalatte();
 
-class Easy extends StatelessWidget {
-  Easy({Key? key}) : super(key: key);
+class Moderate extends StatelessWidget {
+  Moderate({Key? key}) : super(key: key);
   final firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
 
-  Future<firebase_storage.ListResult> listImages() async => await storage.ref('Flags/Easy').listAll();
+  Future<firebase_storage.ListResult> listImages() async => await storage.ref('Flags/Moderate').listAll();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class Easy extends StatelessWidget {
                           for (int i = 0; i < snapshot.data!.items.length; i++) {
                             fileName = snapshot.data!.items[i].name.substring(0, snapshot.data!.items[i].name.length - 4);
 
-                            questions.add(Question(FirebaseImage('gs://flagger-3ec66.appspot.com/Flags/Easy/' + snapshot.data!.items[i].name), fileName));
+                            questions.add(Question(FirebaseImage('gs://flagger-3ec66.appspot.com/Flags/Moderate/' + snapshot.data!.items[i].name), fileName));
                           }
                         }
                         return const QuestionWidget();
@@ -92,7 +92,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   int trueAnswer = 0, wrongAnswers = 0, buttonNum = 0, buttonCount = 4;
   List<String> answers = [];
   bool uniqueQuestion = true;
-  int questionCap = 15, userAt = 1;
+  int questionCap = 20, userAt = 1;
   ImageProvider? flag;
 
   List<bool> userAnswers = [];
