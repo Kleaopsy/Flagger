@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
 
-void main() => runApp(const Settings());
+void main() => runApp(const ScreenSettings());
 
-class Settings extends StatelessWidget {
-  const Settings({Key? key}) : super(key: key);
+class ScreenSettings extends StatelessWidget {
+  const ScreenSettings({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

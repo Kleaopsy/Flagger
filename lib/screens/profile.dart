@@ -49,11 +49,7 @@ class Profile extends StatelessWidget {
                             children: [
                               const Text(
                                 'Name:',
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    color: Colors.black,
-                                    backgroundColor:
-                                        Color.fromARGB(255, 236, 228, 179)),
+                                style: TextStyle(fontSize: 24, color: Colors.black, backgroundColor: Color.fromARGB(255, 236, 228, 179)),
                               ),
                               const SizedBox(width: 15),
                               Text(
@@ -70,11 +66,7 @@ class Profile extends StatelessWidget {
                             children: [
                               const Text(
                                 'Email:',
-                                style: TextStyle(
-                                    fontSize: 24,
-                                    color: Colors.black,
-                                    backgroundColor:
-                                        Color.fromARGB(255, 236, 228, 179)),
+                                style: TextStyle(fontSize: 24, color: Colors.black, backgroundColor: Color.fromARGB(255, 236, 228, 179)),
                               ),
                               const SizedBox(width: 15),
                               Text(
@@ -89,9 +81,7 @@ class Profile extends StatelessWidget {
                           const SizedBox(height: 100),
                         ],
                       ),
-                      decoration: BoxDecoration(
-                          color: colorPalatte[1],
-                          borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(color: colorPalatte[1], borderRadius: BorderRadius.circular(15)),
                     ),
                     const SizedBox(height: 200),
                   ],

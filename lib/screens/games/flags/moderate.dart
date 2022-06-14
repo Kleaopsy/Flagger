@@ -32,7 +32,7 @@ class Moderate extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Level - 1'),
+          title: const Text('Moderate'),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios),
@@ -42,7 +42,7 @@ class Moderate extends StatelessWidget {
           child: Center(
             child: Container(
               width: MediaQuery.of(context).size.width - 60,
-              height: 520,
+              height: (MediaQuery.of(context).size.width - 60) * 2,
               decoration: BoxDecoration(
                 color: colorPalette[0],
                 borderRadius: BorderRadius.circular(20),
@@ -58,7 +58,10 @@ class Moderate extends StatelessWidget {
                           questions.clear();
                           String fileName = "";
                           for (int i = 0; i < snapshot.data!.items.length; i++) {
-                            fileName = snapshot.data!.items[i].name.substring(0, snapshot.data!.items[i].name.length - 4);
+                            fileName = "";
+                            for (int i2 = 0; i2 < snapshot.data!.items[i].name.length - 4; i2++) {
+                              fileName += (snapshot.data!.items[i].name[i2] == '_') ? ' ' : snapshot.data!.items[i].name[i2];
+                            }
 
                             questions.add(Question(FirebaseImage('gs://flagger-3ec66.appspot.com/Flags/Moderate/' + snapshot.data!.items[i].name), fileName));
                           }
@@ -218,14 +221,15 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               image: flag as ImageProvider,
             ),
           ),
+          const SizedBox(height: 80),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
                 onPressed: button1,
                 child: Container(
-                  width: (MediaQuery.of(context).size.width - 60) / 2 - 50,
-                  height: 80,
+                  width: (MediaQuery.of(context).size.width - 60) / 2 - 35,
+                  height: (MediaQuery.of(context).size.width - 60) / 2 - 35,
                   child: Center(
                     child: Text(
                       answers[0],
@@ -241,12 +245,12 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   ),
                 ),
               ),
-              const SizedBox(width: 25),
+              const SizedBox(width: 5),
               TextButton(
                 onPressed: button2,
                 child: Container(
-                  width: (MediaQuery.of(context).size.width - 60) / 2 - 50,
-                  height: 80,
+                  width: (MediaQuery.of(context).size.width - 60) / 2 - 35,
+                  height: (MediaQuery.of(context).size.width - 60) / 2 - 35,
                   child: Center(
                     child: Text(
                       answers[1],
@@ -270,8 +274,8 @@ class _QuestionWidgetState extends State<QuestionWidget> {
               TextButton(
                 onPressed: button3,
                 child: Container(
-                  width: (MediaQuery.of(context).size.width - 60) / 2 - 50,
-                  height: 80,
+                  width: (MediaQuery.of(context).size.width - 60) / 2 - 35,
+                  height: (MediaQuery.of(context).size.width - 60) / 2 - 35,
                   child: Center(
                     child: Text(
                       answers[2],
@@ -287,12 +291,12 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                   ),
                 ),
               ),
-              const SizedBox(width: 25),
+              const SizedBox(width: 5),
               TextButton(
                 onPressed: button4,
                 child: Container(
-                  width: (MediaQuery.of(context).size.width - 60) / 2 - 50,
-                  height: 80,
+                  width: (MediaQuery.of(context).size.width - 60) / 2 - 35,
+                  height: (MediaQuery.of(context).size.width - 60) / 2 - 35,
                   child: Center(
                     child: Text(
                       answers[3],

@@ -5,11 +5,11 @@ const List<Color> lightColorPalatte = [
   Color.fromARGB(255, 62, 187, 75),
   Color.fromRGBO(237, 237, 237, 1),
   Color.fromARGB(255, 218, 0, 55),
+  Color.fromARGB(255, 82, 226, 96),
 ];
 
 List<Color> getLightColorPalatte() => lightColorPalatte;
-AssetImage getBackgroundImage() =>
-    const AssetImage('assets/images/wallpaper.png');
+AssetImage getBackgroundImage() => const AssetImage('assets/images/wallpaper.png');
 
 class ThemeClass {
   static ThemeData lightTheme = ThemeData(
@@ -32,11 +32,8 @@ class CustomPageRoute extends PageRouteBuilder {
         );
 
   @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-          Animation<double> secondaryAnimation, Widget child) =>
-      SlideTransition(
-        position: Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero)
-            .animate(animation),
+  Widget buildTransitions(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) => SlideTransition(
+        position: Tween<Offset>(begin: const Offset(1, 0), end: Offset.zero).animate(animation),
         child: child,
       );
 }

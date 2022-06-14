@@ -1,12 +1,13 @@
 import 'dart:io';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flagger/screens/games.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flagger/screens/profile.dart';
 import 'package:flagger/screens/settings.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'settings.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flagger/provider/googleSignIn.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -56,9 +57,8 @@ class _MainScreenState extends State<MainScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Image(
-            image: const AssetImage('assets/images/Logo.png'),
-            width: screenWidth * 3 / 6,
+          const Image(
+            image: AssetImage('assets/images/Logo.png'),
           ),
           TextButton(
             onPressed: () => Navigator.push(context, CustomPageRoute(child: const Games())),
@@ -79,7 +79,7 @@ class _MainScreenState extends State<MainScreen> {
           ),
           const SignIn(),
           TextButton(
-            onPressed: () => Navigator.push(context, CustomPageRoute(child: const Settings())),
+            onPressed: () => Navigator.push(context, CustomPageRoute(child: const ScreenSettings())),
             child: Container(
               width: screenWidth - 30,
               height: 100,
@@ -127,15 +127,24 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+  bool notSigned = (FirebaseAuth.instance.currentUser == null) ? true : false;
+  final db = FirebaseFirestore.instance;
+  final user = FirebaseAuth.instance.currentUser!;
+
+  Future createDatabase() async {
+    final snapshot = await db.collection('Flags').doc(user.tenantId.toString()).get();
+    await db.collection('Flags').doc('1').set({'2': 2});
+  }
+
   @override
   Widget build(BuildContext context) {
+    db.collection('Flags').doc('1').set({'2': 2});
     double screenWidth = MediaQuery.of(context).size.width;
-    bool notSigned = (FirebaseAuth.instance.currentUser == null) ? true : false;
     if (notSigned) {
       return TextButton(
-        onPressed: () {
-          final provider = Provider.of<GoogleSignInProvider>(context, listen: false);
-          setState(() => notSigned = provider.googleLogin() as bool);
+        onPressed: () async {
+          await Provider.of<GoogleSignInProvider>(context, listen: false).googleLogin();
+          setState(() => notSigned = (FirebaseAuth.instance.currentUser == null) ? true : false);
         },
         child: Container(
           width: screenWidth - 30,
@@ -160,6 +169,7 @@ class _SignInState extends State<SignIn> {
         ),
       );
     } else {
+      createDatabase();
       return TextButton(
         onPressed: () => Navigator.push(context, CustomPageRoute(child: const Profile())),
         child: Container(

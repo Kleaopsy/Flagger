@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
 import 'flags/easy.dart';
 import 'flags/moderate.dart';
+import 'flags/hard.dart';
 
 void main() => runApp(const Flags());
 
@@ -86,7 +87,7 @@ class Flags extends StatelessWidget {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () => Navigator.push(context, CustomPageRoute(child: Hard())),
                 child: Container(
                   width: screenWidth * 3 / 4,
                   height: 100,

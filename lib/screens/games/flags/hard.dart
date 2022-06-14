@@ -5,13 +5,8 @@ import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
-Future main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  runApp(Easy());
-}
+void main() => runApp(Hard());
 
 class Question {
   ImageProvider questionImage;
@@ -22,11 +17,11 @@ class Question {
 List<Question> questions = [];
 List<Color> colorPalette = getLightColorPalatte();
 
-class Easy extends StatelessWidget {
-  Easy({Key? key}) : super(key: key);
+class Hard extends StatelessWidget {
+  Hard({Key? key}) : super(key: key);
   final firebase_storage.FirebaseStorage storage = firebase_storage.FirebaseStorage.instance;
 
-  Future<firebase_storage.ListResult> listImages() async => await storage.ref('Flags/Easy').listAll();
+  Future<firebase_storage.ListResult> listImages() async => await storage.ref('Flags/Hard').listAll();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +32,7 @@ class Easy extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Easy'),
+          title: const Text('Hard'),
           leading: IconButton(
             onPressed: () => Navigator.pop(context),
             icon: const Icon(Icons.arrow_back_ios),
@@ -47,7 +42,7 @@ class Easy extends StatelessWidget {
           child: Center(
             child: Container(
               width: MediaQuery.of(context).size.width - 60,
-              height: (MediaQuery.of(context).size.width - 60) * 2,
+              height: MediaQuery.of(context).size.height - 200,
               decoration: BoxDecoration(
                 color: colorPalette[0],
                 borderRadius: BorderRadius.circular(20),
@@ -68,8 +63,7 @@ class Easy extends StatelessWidget {
                               fileName += (snapshot.data!.items[i].name[i2] == '_') ? ' ' : snapshot.data!.items[i].name[i2];
                             }
 
-                            questions.add(Question(FirebaseImage('gs://flagger-3ec66.appspot.com/Flags/Easy/' + snapshot.data!.items[i].name), fileName));
-                            fileName = "";
+                            questions.add(Question(FirebaseImage('gs://flagger-3ec66.appspot.com/Flags/Hard/' + snapshot.data!.items[i].name), fileName));
                           }
                         }
                         return const QuestionWidget();
@@ -101,7 +95,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
   int trueAnswer = 0, wrongAnswers = 0, buttonNum = 0, buttonCount = 4;
   List<String> answers = [];
   bool uniqueQuestion = true;
-  int questionCap = 15, userAt = 1;
+  int questionCap = 25, userAt = 1;
   ImageProvider? flag;
 
   List<bool> userAnswers = [];
@@ -143,10 +137,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         userAt++;
         answers.clear();
       });
-
-  final db = FirebaseDatabase.instance;
-  final user = FirebaseAuth.instance.currentUser!;
-  Future writeEndToDatabase() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -195,85 +185,24 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         trueCount = userAnswers[i] ? trueCount + 1 : trueCount;
         falseCount = !userAnswers[i] ? falseCount + 1 : falseCount;
       }
-
-      List<Widget> stars = [const Icon(Icons.star, color: Colors.yellowAccent, size: 50), const Icon(Icons.star, color: Colors.white, size: 50)];
-      Widget endStars = Row();
-      if (trueCount >= questionCap) {
-        endStars =
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [stars[0], const SizedBox(width: 10), stars[0], const SizedBox(width: 10), stars[0]]);
-      } else if (trueCount >= questionCap * 2 / 3) {
-        endStars =
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [stars[0], const SizedBox(width: 10), stars[0], const SizedBox(width: 10), stars[1]]);
-      } else if (trueCount >= questionCap / 3) {
-        endStars =
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [stars[0], const SizedBox(width: 10), stars[1], const SizedBox(width: 10), stars[1]]);
-      } else {
-        endStars =
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [stars[1], const SizedBox(width: 10), stars[1], const SizedBox(width: 10), stars[1]]);
-      }
-
-      writeEndToDatabase();
-
-      return Container(
-        width: MediaQuery.of(context).size.width - 30,
-        height: (MediaQuery.of(context).size.width - 30) + 100,
-        decoration: BoxDecoration(color: colorPalette[1], borderRadius: BorderRadius.circular(20)),
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-            endStars,
-            const SizedBox(height: 40),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width - 120,
-                  height: MediaQuery.of(context).size.width - 160,
-                  decoration: BoxDecoration(color: colorPalette[4], borderRadius: BorderRadius.circular(15)),
-                  child: Center(
-                    child: Column(
-                      children: [
-                        const SizedBox(height: 5),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(trueCount.toString(), style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54)),
-                            const Text('/', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54)),
-                            Text(questionCap.toString(), style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54)),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            const SizedBox(width: 10),
-                            Text('Score: ' + (trueCount * 10).toString(),
-                                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54)),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 20),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () {},
-                  child: Container(
-                    width: 60,
-                    height: 60,
-                    decoration: BoxDecoration(color: colorPalette[4], borderRadius: BorderRadius.circular(15)),
-                    child: const Icon(Icons.share, color: Colors.black54, size: 50),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('True: '),
+              Text(trueCount.toString()),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text('False: '),
+              Text(falseCount.toString()),
+            ],
+          ),
+        ],
       );
     } else {
       return Column(
