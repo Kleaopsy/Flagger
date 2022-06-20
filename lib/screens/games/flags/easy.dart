@@ -5,8 +5,8 @@ import 'package:firebase_image/firebase_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -144,9 +144,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
         answers.clear();
       });
 
-  final db = FirebaseDatabase.instance;
   final user = FirebaseAuth.instance.currentUser!;
-  Future writeEndToDatabase() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -212,8 +210,20 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [stars[1], const SizedBox(width: 10), stars[1], const SizedBox(width: 10), stars[1]]);
       }
 
-      writeEndToDatabase();
+      double easyPlayCount = 0;
+      double easyAvg = 0;
+      int easyHighScore = 0;
 
+      final db = FirebaseFirestore.instance;
+      Future writeEndToDatabase() async {
+        await db.collection('Flags').doc('usr' + user.displayName! + user.email!).update({
+          'easyPlayCount': easyPlayCount + 1,
+          'easyAvg': ((easyAvg * easyPlayCount) + trueCount * 10) / (easyPlayCount + 1),
+          'easyHightScore': easyHighScore < trueCount * 10 ? trueCount * 10 : easyHighScore,
+        }).onError((error, stackTrace) => null);
+      }
+
+      writeEndToDatabase();
       return Container(
         width: MediaQuery.of(context).size.width - 30,
         height: (MediaQuery.of(context).size.width - 30) + 100,
@@ -247,8 +257,32 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             const SizedBox(width: 10),
-                            Text('Score: ' + (trueCount * 10).toString(),
-                                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54)),
+                            Text(
+                              'Score: ' + (trueCount * 10).toString(),
+                              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SizedBox(width: 10),
+                            Text(
+                              'High Score: ' + easyHighScore.toString(),
+                              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            const SizedBox(width: 10),
+                            Text(
+                              'Average Score: ' + easyAvg.toString(),
+                              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54),
+                            ),
                           ],
                         ),
                       ],
