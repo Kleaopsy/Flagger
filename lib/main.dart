@@ -9,6 +9,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 import 'settings.dart';
 import 'package:flagger/provider/googleSignIn.dart';
+import 'package:firebase_image/firebase_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 Future main() async {
@@ -57,8 +58,8 @@ class _MainScreenState extends State<MainScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Image(
-            image: AssetImage('assets/images/Logo.png'),
+          Image(
+            image: FirebaseImage('gs://flagger-3ec66.appspot.com/images/Logo.png'),
           ),
           TextButton(
             onPressed: () => Navigator.push(context, CustomPageRoute(child: const Games())),

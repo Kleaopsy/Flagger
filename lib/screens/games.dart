@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flagger/settings.dart';
+import 'package:firebase_image/firebase_image.dart';
 import 'package:flagger/screens/games/flags.dart';
 
 void main() => runApp(const Games());
@@ -50,16 +51,13 @@ class _GamesState extends State<Games> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         child: Column(
-                          children: const [
+                          children: [
                             Image(
-                              image: AssetImage('assets/images/flags_icon.png'),
+                              image: FirebaseImage('gs://flagger-3ec66.appspot.com/images/flags_icon.png'),
                             ),
-                            Text(
+                            const Text(
                               'Flags',
-                              style: TextStyle(
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
+                              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white),
                             ),
                           ],
                         ),
