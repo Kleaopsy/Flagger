@@ -132,13 +132,32 @@ class _SignInState extends State<SignIn> {
   final user = FirebaseAuth.instance.currentUser!;
 
   Future createDatabase() async {
-    final snapshot = await db.collection('Flags').doc(user.tenantId.toString()).get();
-    await db.collection('Flags').doc('1').set({'2': 2});
+    if (notSigned == false) {
+      final snapshot = await db.collection('Flags').doc('usr' + user.displayName! + user.email!).get();
+      if (!snapshot.exists) {
+        await db.collection('Flags').doc('usr' + user.displayName! + user.email!).set({
+          'easyPlayCount': 0,
+          'easyAvg': 0,
+          'easyHightScore': 0,
+          'moderatePlayCount': 0,
+          'moderateAvg': 0,
+          'moderateHightScore': 0,
+          'hardPlayCount': 0,
+          'hardAvg': 0,
+          'hardHightScore': 0,
+          'extremePlayCount': 0,
+          'extremeAvg': 0,
+          'extremeHightScore': 0,
+          'insanePlayCount': 0,
+          'insaneAvg': 0,
+          'insaneHightScore': 0,
+        }).onError((error, stackTrace) => null);
+      }
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    db.collection('Flags').doc('1').set({'2': 2});
     double screenWidth = MediaQuery.of(context).size.width;
     if (notSigned) {
       return TextButton(
