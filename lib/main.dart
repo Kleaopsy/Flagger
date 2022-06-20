@@ -78,7 +78,7 @@ class _MainScreenState extends State<MainScreen> {
               ),
             ),
           ),
-          const SignIn(),
+          //const SignIn(),
           TextButton(
             onPressed: () => Navigator.push(context, CustomPageRoute(child: const ScreenSettings())),
             child: Container(

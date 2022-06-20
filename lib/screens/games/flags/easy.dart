@@ -210,20 +210,6 @@ class _QuestionWidgetState extends State<QuestionWidget> {
             Row(mainAxisAlignment: MainAxisAlignment.center, children: [stars[1], const SizedBox(width: 10), stars[1], const SizedBox(width: 10), stars[1]]);
       }
 
-      double easyPlayCount = 0;
-      double easyAvg = 0;
-      int easyHighScore = 0;
-
-      final db = FirebaseFirestore.instance;
-      Future writeEndToDatabase() async {
-        await db.collection('Flags').doc('usr' + user.displayName! + user.email!).update({
-          'easyPlayCount': easyPlayCount + 1,
-          'easyAvg': ((easyAvg * easyPlayCount) + trueCount * 10) / (easyPlayCount + 1),
-          'easyHightScore': easyHighScore < trueCount * 10 ? trueCount * 10 : easyHighScore,
-        }).onError((error, stackTrace) => null);
-      }
-
-      writeEndToDatabase();
       return Container(
         width: MediaQuery.of(context).size.width - 30,
         height: (MediaQuery.of(context).size.width - 30) + 100,
@@ -269,7 +255,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                           children: [
                             const SizedBox(width: 10),
                             Text(
-                              'High Score: ' + easyHighScore.toString(),
+                              'High Score: 0',
                               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54),
                             ),
                           ],
@@ -280,7 +266,7 @@ class _QuestionWidgetState extends State<QuestionWidget> {
                           children: [
                             const SizedBox(width: 10),
                             Text(
-                              'Average Score: ' + easyAvg.toString(),
+                              'Average Score: 0',
                               style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.black54),
                             ),
                           ],
